@@ -1,3 +1,4 @@
+emailid,pswd
 rpricha4@gmail.com,Linux@123.
 1.django-admin startproject greatkart 
 2.create views home.
