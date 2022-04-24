@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'carts',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,22 @@ STATICFILES_DIRS = [ 'greatkart/static',]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
+
+#  using error messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    50: 'critical',
+}
+
+# SMPTP configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_HOST_USER = 's3traders09@gmail.com'
+EMAIL_HOST_PASSWORD ='sid1234$'
+EMAIL_USE_TLS = True
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

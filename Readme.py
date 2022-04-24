@@ -1,5 +1,6 @@
 emailid,pswd
-rpricha4@gmail.com,Linux@123.
+Rpricha4@gmail.com,Linux@123.
+a@gmail.com, a  (after this run server)
 1.django-admin startproject greatkart 
 2.create views home.
 3.write urls for the same
