@@ -4,10 +4,13 @@ from carts.models import CartItem
 from .forms import OrderForm
 import datetime
 from .models import Order
+import json
 
 
 
 def payments(request):
+    body = json.loads(request.body)
+    print(body)
     return render(request, 'orders/payments.html')
 
     
@@ -35,7 +38,7 @@ def place_order(request, total=0, quantity=0):
     
     if request.method =='POST':
         form = OrderForm(request.POST)
-        print('hi')
+        print('hi POST request')
         if form.is_valid():
            
             '''Order.objects.create(user=current_user, first_name=form.cleaned_data['first_name'],last_name = form.cleaned_data['last_name'], phone = form.cleaned_data['phone'],
@@ -43,8 +46,9 @@ def place_order(request, total=0, quantity=0):
             state=form.cleaned_data['state'], city=form.cleaned_data['city'], order_note = form.cleaned_data['order_note']
             )'''
             # Store all the billing information inside Order table
-            print('hi')
-            data = Order()
+            print('hi valid')
+            
+            data = Order() # create order object
             data.user = current_user
             data.first_name = form.cleaned_data['first_name']
             print(data.first_name)
@@ -70,12 +74,25 @@ def place_order(request, total=0, quantity=0):
             mt = int(datetime.date.today().strftime('%m'))
             d = datetime.date(yr,mt,dt)
             current_date = d.strftime("%Y%m%d") #20210305
+
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
-            return redirect('checkout')
+
+            order = Order.objects.get(user=current_user, is_ordered=False, order_number= order_number)
+            context = {
+                'order': order,
+                'cart_items': cart_items,
+                'total': total,
+                'tax':tax,
+                'grand_total': grand_total,
+            }
+            return render(request,'orders/payments.html', context)
+        else:
+            print(form.errors)
     else:
-        form = OrderForm()
+        form = OrderForm()# else display empty form if form is not valid
+        
     return redirect('checkout')    
 
     #return redirect('checkout')  
