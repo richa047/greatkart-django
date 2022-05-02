@@ -1,0 +1,8 @@
+ {% autoescape off %}<!--safest way when sending email ,gives protection against cross side scripting-->
+
+Hi {{user.first_name}},
+
+YOUR ORDER HAS BEEN RECIEVED
+Order Number : {{order.order_number}}
+
+{% endautoescape %}

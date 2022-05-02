@@ -142,13 +142,22 @@ MESSAGE_TAGS = {
 }
 
 # SMPTP configuration
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT= 587
-EMAIL_HOST_USER = 's3traders09@gmail.com'
-EMAIL_HOST_PASSWORD ='sid1234$'
+EMAIL_HOST_USER = 'testwork801@gmail.com'
+EMAIL_HOST_PASSWORD = 'test8011'
 EMAIL_USE_TLS = True
 
 
+# SMPTP configuration
+'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.turquoic.link'
+EMAIL_HOST_USER = 'mailtest@turquoic.link'
+EMAIL_HOST_PASSWORD = 'internet41234'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 465'''
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
