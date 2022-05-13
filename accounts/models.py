@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+# model for superuser
 class MyAccountManager(BaseUserManager):
     def create_user(self,first_name, last_name, username, email, password=None):
         if not email:
@@ -36,7 +37,7 @@ class MyAccountManager(BaseUserManager):
 
 
 
-# Create your models here.
+# model for normal user
 class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -62,9 +63,9 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.email
     
-    # permission for admin
+    # permission for admin,if user is admin then he has permission to do all the changes
     def has_perm(self,perm,obj=None):
         return self.is_admin
-
+    #
     def has_module_perms(self, add_label):
         return True

@@ -179,8 +179,8 @@
 						fetch(url,{
 							method : "POST",
 							headers: {
-                                "Content-type":"application/json",
-								"X-CSRFToken":csrftoken,//generate csrf token manually since  request is POST
+                                "Content-type": "application/json",
+								"X-CSRFToken": csrftoken, //generate csrf token manually since  request is POST
 							},
                             body: JSON.stringify({
 							orderID: orderID,
@@ -192,13 +192,15 @@
 							.then((response) => response.json())
 							.then((data) => {
 								//redirect to ordercomplete 
-								window.location.href= redirect_url + '?order_number='+data.order_number+'&payment_id='+data.transID;
+								window.location.href = redirect_url + '?order_number='+data.order_number+'&payment_id='+data.trans_id;
 								console.log('Success:', data);
 								console.log('Transaction Completed');
+							});
+					}
 					});
-					}						
-				});
-			}
+			}						
+			
+			
 
 	    }).render('#paypal-button-container');
             

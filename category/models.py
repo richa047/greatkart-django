@@ -14,7 +14,7 @@ class Category(models.Model):
         verbose_name = 'category'
         verbose_name_plural ='categories'
     
-    # to get url using slug by category   
+    # to get url using slug by category, name='products_by_category'(store app->urls.py),get url for category, this will get url of particular category
     def get_url(self):
             return reverse('products_by_category', args=[self.slug])
 

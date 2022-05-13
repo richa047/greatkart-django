@@ -17,6 +17,7 @@ def _cart_id(request):
 
 def add_cart(request, product_id):
     current_user = request.user
+    #1. get product to store in cart
     product = Product.objects.get(id=product_id) #get the product
     # if the user is authenticated
     if current_user.is_authenticated:
@@ -105,7 +106,7 @@ def add_cart(request, product_id):
                     pass 
     #-----
 
-#t        
+#t       2.       
         try:
             cart = Cart.objects.get(cart_id =_cart_id(request)) # get the cart using the cart_id present in the session 
         except Cart.DoesNotExist:
